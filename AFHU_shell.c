@@ -84,9 +84,38 @@ int main(int argc, char *argv[])
         else if (strcmp(command, "quit") == 0){
             return EXIT_SUCCESS;
         }
-        // Unsupported command
+
+	//#2. Program Invocation
+	//if user enters a command that is not in the command list it will try to execute outside of this shell
         else{
-            myPrint("Unsupported command, use help to display the manual\n", 31);
+	   	int status;
+		pid_t c_pid, pid;
+
+		//forking so child can execute the command (with execvp)
+		c_pid = fork();
+		
+		//child
+		if (c_pid == 0){
+			
+			printf("executing outside myShell: \n");
+			//using execvp in child process to execute the comman outside of the shell
+			execvp(argument_array[0], argument_array);
+			perror("execvp failed\n");
+		}
+		//Parent
+		else if (c_pid > 0) {
+			
+			//Waiting for child to finish executing
+			if( (pid = wait(&status)) < 0){
+				perror("wait");
+				_exit(1);
+			}
+			printf("Returned to myShell\n");
+		}
+		else{
+			perror("fork failed\n");
+			_exit(1);
+		}
         }
 
 	//keep updating Command Line Prompt
