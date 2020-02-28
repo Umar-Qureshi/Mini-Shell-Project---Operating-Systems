@@ -27,8 +27,14 @@ $ pause - Pauses the screen
 $ quit - Exits the program
 ```
 
+# Running a scriptfile:
+
+```./shell_AFHU test.txt```
+
 By:
  - Abdul
  - Fadi
  - Hamza
  - Umar
+
+Github Link: https://github.com/HamzaFarhat/OSLab2
