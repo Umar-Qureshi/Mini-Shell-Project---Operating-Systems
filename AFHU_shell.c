@@ -15,21 +15,26 @@ int main(int argc, char *argv[])
     char buffer[BUFFER_LEN] = { 0 };
     char command[BUFFER_LEN] = { 0 };
     char arg[BUFFER_LEN] = { 0 };
-
     char directory[999];
+    FILE* fp = NULL;
+
+    //use stdin or file based on parameters
+    if (argc > 1){
+        fp = fopen(argv[1], "r");
+    }else if (argc == 1){
+        fp = stdin;
+    }
 
     //function in c that gets the pathname of where you are located and saves it to a variable,  more info: pubs.opengroup.org/onlinepubs/009695399/functions/getcwd.html
     getcwd(directory, 999);
 
     // #6. Command line prompt  - (first line that prints, it prints pathname of current directory followed by a doller sign
-    path_Name(directory);
-
-   
-// Parse the commands provided using argc and argv and then send the values through functions to executor.c
+    
+   // Parse the commands provided using argc and argv and then send the values through functions to executor.c
 
     // An infinite loop taking commands from the user
     // fgets is stating take input from stdin and copy it to buffer (more specifically copy BUFFER_LEN amount (which is 999 here) into buffer)
-    while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
+    while (fgets(buffer, BUFFER_LEN, fp) != NULL)
     {	
      	char* argument_array[999];
 	    
@@ -121,6 +126,10 @@ int main(int argc, char *argv[])
 	//keep updating Command Line Prompt
         getcwd(directory, 999);
 	path_Name(directory);
+
+   // memset(argument_array, 0, sizeof(argument_array));
+        memset(buffer, 0, sizeof buffer);
+		memset(argument_array, 0, sizeof argument_array);
     }
     return EXIT_SUCCESS;
 }

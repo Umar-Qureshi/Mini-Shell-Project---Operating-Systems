@@ -1,0 +1,7 @@
+help
+echo hello
+cd ..
+dir
+pause
+environ
+pause
