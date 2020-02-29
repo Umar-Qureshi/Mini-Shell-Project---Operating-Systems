@@ -3,9 +3,11 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <string.h>
 #include "executor.h"
 #include "AFHU_shell.h"
+
 
 #define BUFFER_LEN 999
 
@@ -16,6 +18,7 @@ int main(int argc, char *argv[])
     char command[BUFFER_LEN] = { 0 };
     char arg[BUFFER_LEN] = { 0 };
     char directory[999];
+    int pid;
     FILE* fp = NULL;
 
     //use stdin or file based on parameters
@@ -62,7 +65,18 @@ int main(int argc, char *argv[])
 
 // if the command matches the preset commands call the function that will execute it
         
-	// #1. - Internal commands:
+	//if & at the end of the command
+    if (strcmp(argument_array[i-1],"&") == 0){
+        pid = fork();
+        if (pid != 0){
+            continue;
+        }else if(pid == 0){ //child should continue, but in a different process group
+            setpgid(0, 0);
+            setsid();       
+        }
+    }
+    
+    // #1. - Internal commands:
 	if (strcmp(command, "cd") == 0){
             ChangeDir(argument_array);
         }
