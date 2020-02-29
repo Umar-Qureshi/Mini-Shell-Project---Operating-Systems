@@ -27,11 +27,16 @@ $ pause - Pauses the screen
 $ quit - Exits the program
 ```
 
+# Example to run a command in the Background w/ "&"
+
+```$ pause &```
+
 # Running a scriptfile:
 
 ```./shell_AFHU test.txt```
 
-By:
+
+Shell Project By:
  - Abdul
  - Fadi
  - Hamza
