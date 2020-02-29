@@ -48,6 +48,7 @@ void ChangeDir(char* path[]){
 	if (chdir(path[1]) != 0){
 		printf("Directory was unable to open, most likely does not exist");
 	}
+	//using system call chdir to change our directory
         chdir(path[1]);
 }
 
@@ -111,4 +112,5 @@ void mypause() {
     while(getchar() != '\n') {
       usleep(100000);
     }
+    myPrint("---Enter detected, now returning to myShell:\n", 34);
 }
