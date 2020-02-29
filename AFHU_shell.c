@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
     // Initializing Input buffer and commands to 0 and defining/declaring them
     char buffer[BUFFER_LEN] = { 0 };
     char command[BUFFER_LEN] = { 0 };
-    char arg[BUFFER_LEN] = { 0 };
     char directory[999];
     int pid;
     FILE* fp = NULL;
@@ -43,10 +42,10 @@ int main(int argc, char *argv[])
     {	
      	char* argument_array[999];
 	    
-	// Perform string tokenization to get the command and argument
+     // Perform string tokenization to get the command and argument
 
         //stripping the newline char
-        if (buffer[strlen(buffer)-1] == '\n') {
+        if (buffer[strlen(buffer)-1] == '\n' && strlen(buffer) > 1) {
             buffer[strlen(buffer)-1] = ' ';
         }
 
@@ -65,7 +64,7 @@ int main(int argc, char *argv[])
 
 // if the command matches the preset commands call the function that will execute it
         
-	//if & at the end of the command
+    //#5. if & at the end of the command the child will execute the command (so the main process will not so it will be run in the background)
     if (strcmp(argument_array[i-1],"&") == 0){
         pid = fork();
         if (pid != 0){
@@ -99,10 +98,10 @@ int main(int argc, char *argv[])
         else if (strcmp(command, "pause") == 0){
             mypause();
         }
-	//else if (strcmp(command, "\0") == 0 || strcmp(command, "") == 0 || strcmp(command, " ") == 0 || command == 0 || command == NULL){}
-	else if (command == 0){
+	else if (strcmp(command, "\0") == 0 || strcmp(command, "") == 0 || strcmp(command, " ") == 0 || command[strlen(command - 1)] == '\n' || command == NULL || strcmp(command, "\n") == 0 ){
 	}
-        else if (strcmp(command, "quit") == 0){
+        
+	else if (strcmp(command, "quit") == 0){
             return EXIT_SUCCESS;
         }
 
@@ -145,9 +144,9 @@ int main(int argc, char *argv[])
 		path_Name(directory);
 	}
 
-   // memset(argument_array, 0, sizeof(argument_array));
+	// memset(argument_array, 0, sizeof(argument_array));
         memset(buffer, 0, sizeof buffer);
-		memset(argument_array, 0, sizeof argument_array);
+	memset(argument_array, 0, sizeof argument_array);
     }
     return EXIT_SUCCESS;
 }
