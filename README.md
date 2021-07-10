@@ -1,9 +1,9 @@
-# Operating Systems - Lab 2 - Shell Project
+#  Mini-Shell Project 
 
 # Objectives
 > Creating a mini shell in the C program to understand the inner workings of a shell environment.
-> To gain experiance in building multi source files and make files in C
-> Learn to work in groups to build software using git
+> To gain experience in building multi source files and make files in C.
+> Learn to work in groups to build software using git.
 
 # Compiling (In Linux)
 To compile our mini shell:
@@ -35,11 +35,12 @@ $ quit - Exits the program
 
 ```./shell_AFHU test.txt```
 
+# Proof of Background process working:
+![Proof_Background_Process_Works](https://user-images.githubusercontent.com/22453457/125174569-4ee56d00-e194-11eb-808c-023030e6990a.PNG)
 
 Shell Project By:
- - Abdul
- - Fadi
- - Hamza
- - Umar
+ - Abdul Zainul-Abedin
+ - Hamza Farhat
+ - Umar Qureshi
 
-Github Link: https://github.com/HamzaFarhat/OSLab2
+Original Github Link: https://github.com/HamzaFarhat/OSLab2
