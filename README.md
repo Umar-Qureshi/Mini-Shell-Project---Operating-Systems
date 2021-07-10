@@ -3,7 +3,7 @@
 # Objectives
 > Creating a mini shell in the C program to understand the inner workings of a shell environment.
 > To gain experience in building multi source files and make files in C.
-> Learn to work in groups to build software using git.
+> Learn to work in groups to build software using git..
 
 # Compiling (In Linux)
 To compile our mini shell:
